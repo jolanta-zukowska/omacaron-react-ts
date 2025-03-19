@@ -1,0 +1,9 @@
+// ce ficher est un partial , il ne sert à rien tout seul, il va etre importer quelque part
+
+// on peut utiliser des modules built-in de sass
+// comme le moduler color
+// faut l'importer ===>
+@use 'sass:color';
+
+$color-biscuit: #bd8941;
+$color-filling: color.scale($color-biscuit, $lightness: 50%);

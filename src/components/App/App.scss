@@ -1,0 +1,43 @@
+// En SCSS on peut créer des variables pour les couleurs, les tailles, etc.
+// Par exemple :
+$color-primary: #217cf2;
+$color-secondary: aliceblue;
+$color-tertiary: #07f93b;
+
+
+.app {
+    max-width: 50%;
+    background-color: $color-secondary;
+    margin: 0 auto; /* margin 0 auto centers the div */
+    height: 100vh;
+
+    &--dark{
+        background-color: darkgray;
+        color: whitesmoke;
+    }
+}
+
+.theme-btn {
+    position: absolute; /* position absolute allows the button to be placed anywhere */
+    top: 1rem;
+    right: 1rem;
+    border-radius: 50%;
+    border: none;
+    height: fit-content;
+    padding: 1rem;
+    
+}
+
+.header {
+    background-color: pink;
+    color: $color-secondary;
+    padding: 1rem;
+    text-align: center;
+    &__title {
+        color: red;
+        &:hover {
+            color: blue;
+        }       
+    }
+}
+

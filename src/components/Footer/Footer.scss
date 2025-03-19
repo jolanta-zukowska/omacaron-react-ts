@@ -1,0 +1,43 @@
+@use "../../styles/variables" as v;
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  padding: 1rem 0;
+
+  &__likeBtn {
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .newsletter {
+    text-align: left;
+
+    .newsform {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+  }
+
+  &__copyright {
+    color: #333;
+    font-size: 0.8em;
+  }
+
+  a {
+    margin-left: 0.5rem;
+  }
+
+  .menu-link--selected {
+    color: #f0F;
+  }
+}
