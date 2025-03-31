@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Heart, Moon, Sun } from "feather-icons-react";
 
 function Footer() {
@@ -39,6 +39,37 @@ function Footer() {
 
 	// console.log(counter);
 	// console.log(setCounter);
+
+	// *** EXEMPLE D'EFFET qui necessite un nettoyage ===>
+	useEffect(() => {
+		// le bloc NEWSLETTER n'est pas affiché tout de suite ===> on 'affiche au bout de 5sec
+		// on met en place un timer au premier rendu du composant et au bout de 5sec on affiche pop up newsletter
+		// via la methode SETTIMEOUT
+		// setTimeout(() => {
+
+		let nbSec = 0;
+		const intervalId = setInterval(
+			() => {
+				// affichage de a pop up relou
+				// alert("abonnez vous !!!");
+				nbSec = nbSec + 1;
+				console.log("le footer est affiché depuis", nbSec);
+			},
+			// au bout de 2 secondes ===>
+			2000,
+		);
+
+		// Quand le composant meurt il faudrait exécuter une fonction qui nettoie l'effet de bord
+		// Il est possible qu'après la mort de composant son effet continue de "tourner"
+		// Ici c'est CLEARINTERVAL qui supprime SETINTERVAL ===>
+
+		const cleaningFunction = () => {
+			// supprimer interval ===>
+			clearInterval(intervalId);
+		};
+		// on RETURN la fonction de nettoyage ===>
+		return cleaningFunction;
+	}, []);
 
 	return (
 		<footer className="footer">
