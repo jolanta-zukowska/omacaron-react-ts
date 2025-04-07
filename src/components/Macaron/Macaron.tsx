@@ -1,24 +1,23 @@
-// ce composant affiche 1 macaron il est générique
-// mais il faut lui filer l'objet macaron contenant le filling, la couleur
+import React from "react";
+import "./Macaron.scss";
+// import du type custom de l'objet macaron:
+import IMacaron from "../../@types/IMacaron";
+
+// ce composant affiche 1 macaron il est générique mais il faut lui filer l'objet macaron contenant le filling, la couleur
 // un composant est une fonction, elle peut avoir des paramètres
 // pour utiliser ce composant dans le JSX de App on fait comme ça :
 // <Macaron macaronToDisplay={{ flavour: 'rose', color: '#F0F' }} />
 
-// import du type custom de l'objet macaron:
-import IMacaron from "../../@types/IMacaron";
-
-// import de la feuille de style
-import "./Macaron.scss";
+// Typage des props
+interface MacaronProps {
+	macaronToDisplay: IMacaron;
+}
 
 // Macaron c'est une fonction avec paramètres
 // c'est un composant avec props
 // il reçoit en props le macaron à afficher
 // suivant le macaron qu'il a reçu en props il va afficher une couleur de coque différente
 
-// Typage des props
-interface MacaronProps {
-	macaronToDisplay: IMacaron;
-}
 // le composant Macaron sert à afficher un seul macaron
 // il prend en argument un objet 'macaron' qui contient les propriétés d'un macaron
 // on va afficher la couleur et le parfum du macaron via les paramètres de la fonction
@@ -37,7 +36,7 @@ interface MacaronProps {
 // COMPOSANT MACARON
 
 function Macaron(props: {
-	macaronToDisplay: { id: number; flavour: string; colour: string };
+	macaronToDisplay: { id: number; flavour: string; color: string };
 }) {
 	// nous sommes en TypeScript ===> on doit typer les props
 	// ici il s'agit d'un OBJET avec plusieurs propriétés
@@ -53,27 +52,21 @@ function Macaron(props: {
 
 	// Ancienne version de code ===> Jola
 	return (
-		<div className="macaron" key={macaron.id}>
-			<div className="macaron__colour">{macaron.colour}</div>
-			<div className="macaron__flavour">{macaron.flavour}</div>
+		<div className="macaron">
+			{/* <div className="macaron__coque">{macaron.colour}</div>
+			<div className="macaron__flavour">{macaron.flavour}</div> */}
+			<div
+				className="macaron__coque"
+				// changement de la couleur avec du CSS-in-JS
+				style={{ backgroundColor: macaron.color }}
+			/>
+			<div className="macaron__filling">{macaron.flavour}</div>
+			<div
+				className="macaron__coque reversed"
+				style={{ backgroundColor: macaron.color }}
+			/>
 		</div>
 	);
-
-	//Nouvelle version de code ===> correction Solene
-	// return (
-	// 	<div className="macaron">
-	// 		<div
-	// 			className="macaron__coque"
-	// 			// changement de la couleur avec du CSS-in-JS
-	// 			style={{ backgroundColor: macaronToDisplay.color }}
-	// 		/>
-	// 		<div className="macaron__filling">{macaronToDisplay.flavour}</div>
-	// 		<div
-	// 			className="macaron__coque reversed"
-	// 			style={{ backgroundColor: macaronToDisplay.color }}
-	// 		/>
-	// 	</div>
-	// );
 }
 
 export default Macaron;

@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import { Heart, Moon, Sun } from "feather-icons-react";
+import "./Footer.scss";
+
+// ====================================================
+
+// import du composant Link de react-router qu'on va utiliser à la palce des balises <a>
+// NavLink c'est pareil que Link, sauf que ça ajoute une classe "active" sur le lien actif (= le lien qui a la valeur de son attribut "to=''" et qui est égal à URL  )
+import { NavLink } from "react-router";
+
+// ====================================================
 
 function Footer() {
 	// STATE pour piloter l'affichage de compteur ou de message de validation
 	// deux affichages possibles ===> soit le form soit WelcomeMsg ===> true / false
 	// const [myWelcomeMsg, setMyWelcomeMsg] = useState(false);
-	const [isSubscribed, setIsSuscribed] = useState(false);
+	const [isSubscribed, setIsSubscribed] = useState(false);
 
 	const handleClick = () => {
 		console.log("Le footer uniquement a été redessiné par VDom.");
@@ -46,14 +55,16 @@ function Footer() {
 		// on met en place un timer au premier rendu du composant et au bout de 5sec on affiche pop up newsletter
 		// via la methode SETTIMEOUT
 		// setTimeout(() => {
+		let intervalId;
+		let nbSec = 0; // Déclaré à l'intérieur du callback
 
-		let nbSec = 0;
-		const intervalId = setInterval(
+		intervalId = setInterval(
 			() => {
 				// affichage de a pop up relou
 				// alert("abonnez vous !!!");
 				nbSec = nbSec + 1;
-				console.log("le footer est affiché depuis", nbSec);
+				// "nbSec += 1;"
+				// console.log("le footer est affiché depuis", nbSec);
 			},
 			// au bout de 2 secondes ===>
 			2000,
@@ -99,7 +110,7 @@ function Footer() {
 						console.log("vous êtes abonné", emailOfUser);
 
 						// dans action === dans onSubmit ===> on change le STATE une fois le mail renseigné ===>
-						setIsSuscribed(!isSubscribed);
+						setIsSubscribed(!isSubscribed);
 					}}
 				>
 					Inscrivez-vous à notre newsletter !
@@ -114,6 +125,32 @@ function Footer() {
 					</button>
 				</form>
 			)}
+			<ul>
+				<li>
+					<a
+						href="/about"
+						onClick={(clickEvent) => {
+							// on stoppe le comport pas défaut du lien => NE PAS refaire une requête http => car nous sommes en SPA !!! il n'existe qu'une seule page !!!
+							clickEvent.preventDefault();
+							console.log("Lien cliqué & rien ne se passe.");
+							// ici on change un state qui dit quelle page est affichée ===> setPage('about')
+							// dans le JSX si page vaut about ===> au lieu de la liste de macarons j'affiche la page "about"
+
+							// on va quand même modifier url pour avoir une expérience de navigation ===>
+							// history.pushState({}, "title1", "?page=1");
+							history.pushState({}, "", "/about");
+						}}
+					>
+						About Us
+					</a>
+				</li>
+				<li>
+					<NavLink to="/aboutus">About Us avec Link</NavLink>
+				</li>
+				<li>
+					<NavLink to="/contactus">Contact Us</NavLink>
+				</li>
+			</ul>
 		</footer>
 	);
 }

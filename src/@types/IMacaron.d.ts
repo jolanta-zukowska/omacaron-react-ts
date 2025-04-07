@@ -1,10 +1,11 @@
-// ce fichier sert à définir le type custom d'objet Macaron
-// il sera importé dans le composant Macaron pour typer la prop macaronToDisplay
+// ce fichier sert à definir le type custom d'un objet macaron
+// il sera impprté dans le composant Macaron pour typer la prop macaronToDisplay
 
 interface IMacaron {
 	id: number;
 	flavour: string;
 	color: string;
+	// category: string;
 }
 
 export default IMacaron;

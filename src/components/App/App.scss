@@ -1,47 +1,111 @@
-// En SCSS on peut créer des variables pour les couleurs, les tailles, etc.
-// Par exemple :
-$color-primary: #217cf2;
-$color-secondary: aliceblue;
-$color-tertiary: #07f93b;
-
+@use "../../styles/variables" as v;
 
 .app {
-    max-width: 50%;
-    background-color: $color-secondary;
-    margin: 0 auto; /* margin 0 auto centers the div */
-    height: 100vh;
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+  /*  Pour centrer votre composant .app horizontalement tout en conservant sa largeur de 80%, ajoutez la propriété "margin: 0 auto". Cette méthode fonctionne car un élément block avec une largeur définie peut être centré via les MARGES AUTOMATIQUES.
+  "margin: 0 auto" centre horizontalement en répartissant l'espace restant de part et d'autre. */
+  justify-content: center;
+  background-color: #FFF;
+  position: relative;
 
-    &--dark{
-        background-color: darkgray;
-        color: whitesmoke;
+  &--dark {
+    background-color: #333;
+    .header {
+      color: #fff;
     }
-}
+  }
 
-.theme-btn {
-    position: absolute; /* position absolute allows the button to be placed anywhere */
-    top: 1rem;
-    right: 1rem;
-    border-radius: 50%;
-    border: none;
-    height: fit-content;
-    padding: 1rem;
-    
-}
+  .box {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+    height: 50vh;
+    overflow: auto;
+  }
 
-.header {
-    background-color: pink;
-    color: $color-secondary;
-    padding: 1rem;
+  .filter {
     text-align: center;
-    &__title {
-        color: red;
-        &:hover {
-            color: blue;
-        }       
-    }
+    margin: 0.5rem;
+  }
+
+  .hidefooterbtn {
+    position: absolute;
+    right: 1rem;
+    bottom: 2.8rem;
+  }
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+  } 
 }
 
-.filter {
-    padding : 1rem
-}
+
+// @use "../../styles/variables" as v;
+
+// // En SCSS on peut créer des variables pour les couleurs, les tailles, etc.
+// // Par exemple :
+// $color-primary: #217cf2;
+// $color-secondary: aliceblue;
+// $color-tertiary: #07f93b;
+
+
+// .app {
+//     max-width: 50%;
+//     background-color: $color-secondary;
+//     margin: 0 auto; /* margin 0 auto centers the div */
+//     height: 100vh;
+
+//     &--dark{
+//         background-color: darkgray;
+//         color: whitesmoke;
+//     }
+// }
+
+// .theme-btn {
+//     position: absolute; /* position absolute allows the button to be placed anywhere */
+//     top: 1rem;
+//     right: 1rem;
+//     border-radius: 50%;
+//     border: none;
+//     height: fit-content;
+//     padding: 1rem;
+    
+// }
+
+// .header {
+//     background-color: pink;
+//     color: $color-secondary;
+//     padding: 1rem;
+//     text-align: center;
+//     &__title {
+//         color: red;
+//         &:hover {
+//             color: blue;
+//         }       
+//     }
+// }
+
+// .filter {
+//     padding : 1rem
+// }
 
