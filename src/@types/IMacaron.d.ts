@@ -5,7 +5,7 @@ interface IMacaron {
 	id: number;
 	flavour: string;
 	color: string;
-	// category: string;
+	category: string;
 }
 
 export default IMacaron;

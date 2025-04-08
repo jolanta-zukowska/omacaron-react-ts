@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type IMacaron from "../@types/IMacaron";
 import Macaron from "../components/Macaron/Macaron";
 import { useEffect, type Dispatch, type SetStateAction } from "react";
@@ -94,8 +95,11 @@ function MacaronsPage({
 				<button type="submit">Add</button>
 			</form>
 
-			{/* CREATION DE FILTER INPUT en temps réel*/}
+			{/* CREATION DE FILTER INPUT en temps réel par les mots-clés et par la saisie utilisateur*/}
 			<div className="filter">
+				Categories: <Link to="/categ/curd">Curd</Link> -{" "}
+				<Link to="/categ/ganache">Ganache</Link> -{" "}
+				<Link to="/categ/buttercream">Butter Cream</Link>
 				<input
 					id="filter-input"
 					type="text"
@@ -113,7 +117,6 @@ function MacaronsPage({
 						setFilterValue(userData);
 					}}
 				/>
-
 				<button
 					type="button"
 					onClick={() => {

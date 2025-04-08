@@ -18,6 +18,8 @@ import AboutPage from "../../pages/AboutPage";
 
 import { Routes } from "react-router";
 import { Route } from "react-router";
+import ContactPage from "../../pages/ContactPage";
+import OwniPage from "../../pages/OwniPage";
 
 // import AddFormMacaron from "../AddFormMacaron/AddFormMacaron";
 
@@ -52,7 +54,7 @@ function App() {
 
 	const title = "Nos Macarons";
 
-	// *** FONCTION CALL API (= fetch) pour aller chercher les données sur le back ===>
+	// *** FONCTION CALL API (= fetch) pour aller chercher les macarons sur le back ===>
 	useEffect(() => {
 		const fetchMacarons = async () => {
 			// *** VERSION AVEC AXIOS
@@ -70,6 +72,9 @@ function App() {
 		fetchMacarons();
 	}, []);
 
+	// Tableau des catégories (imaginons qu'il vient d'une API) ===>
+	const categories = ["ganache", "curd", "buttercream"];
+
 	// *** RETURN du JSX qui sera placé dans le VDOM puis reconcilié avec le DOM réel
 	return (
 		<div className={isDark ? "app app--dark" : "app"}>
@@ -80,6 +85,7 @@ function App() {
 			{/* <Header /> */}
 
 			<Routes>
+				{/* Routes principales */}
 				<Route
 					path="/"
 					element={
@@ -92,8 +98,73 @@ function App() {
 					}
 				/>
 				<Route path="/about" element={<AboutPage />} />
-			</Routes>
+				<Route path="/contact" element={<ContactPage />} />
+				<Route path="*" element={<OwniPage />} />
 
+				{/* Routes des categories à partir de API :*/}
+				{/* <Route
+					path="/categ/curd"
+					element={
+						<MacaronsPage
+							// dans la liste de macarons ===> on ne lui attribue que les macarons de type "curd"
+							listMacarons={listMacarons.filter(
+								(macaron) => macaron.category === "curd",
+							)}
+							setListMacarons={setListMacarons}
+							filterValue={filterValue}
+							setFilterValue={setFilterValue}
+						/>
+					}
+				/> */}
+				{/* <Route
+					path="/categ/ganache"
+					element={
+						<MacaronsPage
+							// dans la liste de macarons ===> on ne lui attribue que les macarons de type "ganache"
+							listMacarons={listMacarons.filter(
+								(macaron) => macaron.category === "ganache",
+							)}
+							setListMacarons={setListMacarons}
+							filterValue={filterValue}
+							setFilterValue={setFilterValue}
+						/>
+					}
+				/> */}
+				{/* <Route
+					path="/categ/buttercream"
+					element={
+						<MacaronsPage
+							// dans la liste de macarons ===> on ne lui attribue que les macarons de type "buttercream"
+							listMacarons={listMacarons.filter(
+								(macaron) => macaron.category === "buttercream",
+							)}
+							setListMacarons={setListMacarons}
+							filterValue={filterValue}
+							setFilterValue={setFilterValue}
+						/>
+					}
+				/> */}
+
+				{/* Routes des categories à partir de tableau des categ :*/}
+
+				{categories.map((categ) => (
+					<Route
+						key={categ}
+						path={`/categ/${categ}`}
+						element={
+							<MacaronsPage
+								// dans la liste de macarons ===> on ne lui attribue que les macarons de type "categ"
+								listMacarons={listMacarons.filter(
+									(macaron) => macaron.category === categ,
+								)}
+								setListMacarons={setListMacarons}
+								filterValue={filterValue}
+								setFilterValue={setFilterValue}
+							/>
+						}
+					/>
+				))}
+			</Routes>
 			<button
 				type="button"
 				className="theme-btn"

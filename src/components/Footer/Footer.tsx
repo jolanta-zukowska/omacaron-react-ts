@@ -128,7 +128,7 @@ function Footer() {
 			<ul>
 				<li>
 					<a
-						href="/about"
+						href="/aboutclassic"
 						onClick={(clickEvent) => {
 							// on stoppe le comport pas défaut du lien => NE PAS refaire une requête http => car nous sommes en SPA !!! il n'existe qu'une seule page !!!
 							clickEvent.preventDefault();
@@ -143,12 +143,15 @@ function Footer() {
 					>
 						About Us
 					</a>
+					<li>
+						<NavLink to="/">Home</NavLink>
+					</li>
 				</li>
 				<li>
-					<NavLink to="/aboutus">About Us avec Link</NavLink>
+					<NavLink to="/about">About Us avec Link</NavLink>
 				</li>
 				<li>
-					<NavLink to="/contactus">Contact Us</NavLink>
+					<NavLink to="/contact">Contact Us</NavLink>
 				</li>
 			</ul>
 		</footer>
